@@ -1,9 +1,6 @@
 package com.salesianostriana.dam.trianatourist.modelos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -15,6 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+@Builder
 public class Route {
 
     @Id
@@ -33,5 +31,11 @@ public class Route {
     private UUID id;
     private String name;
     @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "route_id",
+            foreignKey = @ForeignKey(name="FK_STEPS_ROUTE")),
+            inverseJoinColumns = @JoinColumn(name = "poi_id",
+                    foreignKey = @ForeignKey(name="FK_STEPS_POI")),
+            name = "steps"
+    )
     private List<POI>steps;
 }

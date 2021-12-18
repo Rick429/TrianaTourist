@@ -1,9 +1,6 @@
 package com.salesianostriana.dam.trianatourist.modelos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -15,6 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
+@Builder
 public class POI {
 
     @Id
@@ -35,6 +33,7 @@ public class POI {
     private String location;
     private LocalDate date;
     @ManyToOne
+    @JoinColumn(name = "category", foreignKey = @ForeignKey(name = "FK_POI_CATEGORY"))
     private Category category;
     private String coverPhoto;
     private String photo2;

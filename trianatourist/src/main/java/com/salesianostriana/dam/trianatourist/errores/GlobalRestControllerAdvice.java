@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.trianatourist.errores;
 
+import com.salesianostriana.dam.trianatourist.errores.excepciones.EntidadNoEncontradaException;
+import com.salesianostriana.dam.trianatourist.errores.excepciones.EntityExistsException;
 import com.salesianostriana.dam.trianatourist.errores.modelo.ApiError;
 import com.salesianostriana.dam.trianatourist.errores.modelo.ApiSubError;
 import com.salesianostriana.dam.trianatourist.errores.modelo.ApiValidationSubError;
@@ -11,24 +13,27 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import javax.persistence.EntityNotFoundException;
 import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@RestControllerAdvice
 public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({EntityNotFoundException.class})
-    public ResponseEntity<?> handleNotFoundException(EntityNotFoundException ex, WebRequest request) {
+    @ExceptionHandler({EntidadNoEncontradaException.class})
+    public ResponseEntity<?> handleNotFoundException(EntidadNoEncontradaException ex, WebRequest request) {
         return buildApiError404(ex, request);
     }
+    @ExceptionHandler({EntityExistsException.class})
+    public ResponseEntity<?> handleEntityExistsException(EntityExistsException ex, WebRequest request) {
+        return buildApiError400(ex, request);
+    }
+
 
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<?> handleConstraintViolationException(ConstraintViolationException ex, WebRequest request) {
