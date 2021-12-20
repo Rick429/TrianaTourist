@@ -54,14 +54,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
-
-        if(categoryService.findById(id)!=null){
-            List<POI>pois = poiService.findByCategoryId(id);
-            for (POI p: pois) {
-                p.setCategory(null);
-            }
-            categoryService.deleteById(id);
-        }
+        categoryService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

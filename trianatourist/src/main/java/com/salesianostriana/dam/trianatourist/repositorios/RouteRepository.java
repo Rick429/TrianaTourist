@@ -7,4 +7,6 @@ import java.util.UUID;
 
 public interface RouteRepository extends JpaRepository<Route, UUID> {
 
+    boolean existsByName(String name);
+
 }

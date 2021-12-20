@@ -44,16 +44,9 @@ public class POIController {
     }
 
     @PutMapping("/{id}")
-    public CreatePOIDto edit(@Valid @RequestBody CreatePOIDto cdto, @PathVariable UUID id){
-        POI p = poiService.findById(id);
-        p.setName(cdto.getName());
-        p.setLocation(cdto.getLocation());
-        p.setCoverPhoto(cdto.getCoverPhoto());
-        p.setDate(cdto.getDate());
-        p.setPhoto2(cdto.getPhoto2());
-        p.setPhoto3(cdto.getPhoto3());
-        poiService.edit(p);
-        return cdto;
+    public GetPOIDto edit(@Valid @RequestBody CreatePOIDto cdto, @PathVariable UUID id){
+        
+        return poiService.edit(cdto, id);
     }
 
     @DeleteMapping("/{id}")
