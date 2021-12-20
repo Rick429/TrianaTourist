@@ -53,9 +53,7 @@ public class RouteController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
-        if(routeService.findById(id)!=null){
             routeService.deleteById(id);
-        }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

@@ -60,7 +60,12 @@ public class RouteService {
     }
 
     public void deleteById (UUID id){
-        routeRepository.deleteById(id);
+        if(routeRepository.findById(id).isEmpty()){
+            throw new SingleEntityNotFoundException(id.toString(), Route.class);
+        }else{
+            routeRepository.deleteById(id);
+        }
+
     }
 
     public ResponseEntity<Route> addPOIToRoute(@PathVariable UUID id, @PathVariable UUID id2){
