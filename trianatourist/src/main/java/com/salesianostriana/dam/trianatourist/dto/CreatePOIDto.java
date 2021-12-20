@@ -1,17 +1,24 @@
 package com.salesianostriana.dam.trianatourist.dto;
 
-import com.salesianostriana.dam.trianatourist.validacion.anotaciones.CategoryExists;
-import com.salesianostriana.dam.trianatourist.validacion.anotaciones.LocationFormat;
-import com.salesianostriana.dam.trianatourist.validacion.anotaciones.UrlFormat;
+import com.salesianostriana.dam.trianatourist.validacion.anotaciones.*;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
 @Builder
+
+
+@PhotoUnique(
+        coverPhoto = "coverPhoto",
+        photo2 = "photo2",
+        photo3 = "photo3",
+        message = "{poi.photo.url.unique}"
+)
 public class CreatePOIDto {
 
     @NotBlank
@@ -20,7 +27,7 @@ public class CreatePOIDto {
     private String location;
     private LocalDate date;
     @CategoryExists(message = "{poi.category.exists}")
-    private String category;
+    private UUID category;
     @NotBlank
     @UrlFormat(message = "{poi.photo.url.format}")
     private String coverPhoto;

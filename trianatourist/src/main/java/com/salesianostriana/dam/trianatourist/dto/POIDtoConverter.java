@@ -14,12 +14,12 @@ public class POIDtoConverter {
     private final CategoryService categoryService;
 
     public POI createPOIDtoToPOI(CreatePOIDto createPOIDto){
-        Category cat = categoryService.findByName(createPOIDto.getName());
+
         return POI.builder()
                 .name(createPOIDto.getName())
                 .date(createPOIDto.getDate())
                 .location(createPOIDto.getLocation())
-                .category(cat)
+                .category(categoryService.findById(createPOIDto.getCategory()))
                 .coverPhoto(createPOIDto.getCoverPhoto())
                 .photo2(createPOIDto.getPhoto2())
                 .photo3(createPOIDto.getPhoto3())
@@ -30,7 +30,7 @@ public class POIDtoConverter {
         return GetPOIDto.builder()
                 .id(poi.getId())
                 .name(poi.getName())
-                .category(poi.getCategory().getName())
+                .category(poi.getCategory().getId())
                 .coverPhoto(poi.getCoverPhoto())
                 .date(poi.getDate())
                 .location(poi.getLocation())

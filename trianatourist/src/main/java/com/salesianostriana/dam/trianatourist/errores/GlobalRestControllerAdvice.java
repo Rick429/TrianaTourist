@@ -57,7 +57,6 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-
         List<ApiSubError> subErrorList = new ArrayList<>();
 
         ex.getAllErrors().forEach(error -> {
@@ -86,11 +85,7 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
                                 .build()
                 );
             }
-
-
         });
-
-
 
         return buildApiErrorWithSubError(HttpStatus.BAD_REQUEST, "Errores varios en la validación",
                 request,
@@ -123,6 +118,5 @@ public class GlobalRestControllerAdvice extends ResponseEntityExceptionHandler {
         return ResponseEntity
                 .status(estado)
                 .body(new ApiError(estado, mensaje, ((ServletWebRequest) request).getRequest().getRequestURI(), subErrores));
-
     }
 }

@@ -15,7 +15,7 @@ public class GetPOIDto{
     private String name;
     private String location;
     private LocalDate date;
-    private String category;
+    private UUID category;
     private String coverPhoto;
     private String photo2;
     private String photo3;

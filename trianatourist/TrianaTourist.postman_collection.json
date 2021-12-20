@@ -14,7 +14,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/category/1af7ac5a-7dcd-1aca-817d-cdce79980000",
+							"raw": "http://localhost:8080/category/{{idCategory}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -22,7 +22,7 @@
 							"port": "8080",
 							"path": [
 								"category",
-								"1af7ac5a-7dcd-1aca-817d-cdce79980000"
+								"{{idCategory}}"
 							]
 						}
 					},
@@ -50,6 +50,18 @@
 				},
 				{
 					"name": "3.-Crear una categoria",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"idCategory\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -92,7 +104,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/category/1af7ac5a-7dcd-1aca-817d-cdce79980000",
+							"raw": "http://localhost:8080/category/{{idCategory}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -100,7 +112,7 @@
 							"port": "8080",
 							"path": [
 								"category",
-								"1af7ac5a-7dcd-1aca-817d-cdce79980000"
+								"{{idCategory}}"
 							]
 						}
 					},
@@ -112,7 +124,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/category/1af7ac5a-7dcd-1bfa-817d-cdfc468c0000",
+							"raw": "http://localhost:8080/category/{{idCategory}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -120,7 +132,7 @@
 							"port": "8080",
 							"path": [
 								"category",
-								"1af7ac5a-7dcd-1bfa-817d-cdfc468c0000"
+								"{{idCategory}}"
 							]
 						}
 					},
@@ -190,7 +202,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Poi1\",\r\n    \"location\":\"37.3803587,-6.0097771\",\r\n    \"date\":\"2012-10-10\",\r\n    \"category\":\"categoria\",\r\n    \"coverPhoto\":\"https://triana.salesianos.edu/colegio/wp-content/uploads/sites/2/2021/02/Logo-vertical-segundo-nivel-e1613064985691.png\",\r\n    \"photo2\":\"https://triana.salesianos.edu/colegio/wp-content/uploads/sites/2/2021/02/Logo-vertical-segundo-nivel-e1613064985692.png\",\r\n    \"photo3\":\"https://triana.salesianos.edu/colegio/wp-content/uploads/sites/2/2021/02/Logo-vertical-segundo-nivel-e1613064985693.png\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Poi1\",\r\n    \"location\":\"37.3803587,-6.0097771\",\r\n    \"date\":\"2012-10-10\",\r\n    \"category\":\"{{idCategory}}\",\r\n    \"coverPhoto\":\"https://triana.salesianos.edu/colegio/wp-content/uploads/sites/2/2021/02/Logo-vertical-segundo-nivel-e1613064985691.png\",\r\n    \"photo2\":\"https://triana.salesianos.edu/colegio/wp-content/uploads/sites/2/2021/02/Logo-vertical-segundo-nivel-e1613064985692.png\",\r\n    \"photo3\":\"https://triana.salesianos.edu/colegio/wp-content/uploads/sites/2/2021/02/Logo-vertical-segundo-nivel-e1613064985693.png\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -227,7 +239,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/poi/1af7ac5a-7dce-109c-817d-ce30b39c0000",
+							"raw": "http://localhost:8080/poi/{{idPOI}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -235,7 +247,7 @@
 							"port": "8080",
 							"path": [
 								"poi",
-								"1af7ac5a-7dce-109c-817d-ce30b39c0000"
+								"{{idPOI}}"
 							]
 						}
 					},
@@ -247,7 +259,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/poi/1af7ac5a-7dce-109c-817d-ce30b39c0000",
+							"raw": "http://localhost:8080/poi/{{idPOI}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -255,7 +267,7 @@
 							"port": "8080",
 							"path": [
 								"poi",
-								"1af7ac5a-7dce-109c-817d-ce30b39c0000"
+								"{{idPOI}}"
 							]
 						}
 					},
@@ -272,7 +284,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/route/1af7ac5a-7dce-12e0-817d-ce5301e40000",
+							"raw": "http://localhost:8080/route/{{idRoute}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -280,7 +292,7 @@
 							"port": "8080",
 							"path": [
 								"route",
-								"1af7ac5a-7dce-12e0-817d-ce5301e40000"
+								"{{idRoute}}"
 							]
 						}
 					},
@@ -362,7 +374,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/route/1af7ac5a-7dce-12e0-817d-ce5301e40000",
+							"raw": "http://localhost:8080/route/{{idRoute}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -370,7 +382,7 @@
 							"port": "8080",
 							"path": [
 								"route",
-								"1af7ac5a-7dce-12e0-817d-ce5301e40000"
+								"{{idRoute}}"
 							]
 						}
 					},
@@ -382,7 +394,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/route/1af7ac5a-7dce-12e0-817d-ce5301e40000",
+							"raw": "http://localhost:8080/route/{{idRoute}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -390,7 +402,7 @@
 							"port": "8080",
 							"path": [
 								"route",
-								"1af7ac5a-7dce-12e0-817d-ce5301e40000"
+								"{{idRoute}}"
 							]
 						}
 					},
@@ -481,6 +493,10 @@
 		},
 		{
 			"key": "idRoute",
+			"value": ""
+		},
+		{
+			"key": "idCategory",
 			"value": ""
 		}
 	]

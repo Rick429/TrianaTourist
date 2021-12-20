@@ -5,8 +5,9 @@ import com.salesianostriana.dam.trianatourist.validacion.anotaciones.CategoryExi
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.UUID;
 
-public class CategoryExistsValidator implements ConstraintValidator<CategoryExists, String> {
+public class CategoryExistsValidator implements ConstraintValidator<CategoryExists, UUID> {
 
     @Autowired
     private CategoryRepository repositorio;
@@ -15,7 +16,7 @@ public class CategoryExistsValidator implements ConstraintValidator<CategoryExis
     public void initialize(CategoryExists constraintAnnotation) { }
 
     @Override
-    public boolean isValid(String category, ConstraintValidatorContext context) {
-        return repositorio.existsByName(category);
+    public boolean isValid(UUID id, ConstraintValidatorContext context) {
+        return repositorio.existsById(id);
     }
 }
