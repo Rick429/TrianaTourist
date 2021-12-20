@@ -32,8 +32,8 @@ public class POIController {
     }
 
     @GetMapping("/{id}")
-    public POI findByID(@PathVariable UUID id){
-        return poiService.findById(id);
+    public GetPOIDto findByID(@PathVariable UUID id){
+        return poiDtoConverter.pOIToGeTPOIDto(poiService.findById(id));
     }
 
     @PostMapping("/")

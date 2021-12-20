@@ -30,7 +30,7 @@ public class POIDtoConverter {
         return GetPOIDto.builder()
                 .id(poi.getId())
                 .name(poi.getName())
-                .category(poi.getCategory().getId())
+                .category(poi.getCategory()==null?"Sin categoria":poi.getCategory().getName())
                 .coverPhoto(poi.getCoverPhoto())
                 .date(poi.getDate())
                 .location(poi.getLocation())
@@ -39,3 +39,4 @@ public class POIDtoConverter {
                 .build();
     }
 }
+

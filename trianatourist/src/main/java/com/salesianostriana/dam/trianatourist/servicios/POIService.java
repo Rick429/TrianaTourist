@@ -46,4 +46,6 @@ public class POIService {
     public void deleteById (UUID id){
         poiRepository.deleteById(id);
     }
+
+    public List<POI>findByCategoryId(UUID id){ return poiRepository.findByCategoryId(id);}
 }
