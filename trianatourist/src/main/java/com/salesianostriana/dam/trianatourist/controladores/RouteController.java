@@ -47,11 +47,8 @@ public class RouteController {
     }
 
     @PutMapping("/{id}")
-    public CreateRouteDto edit(@Valid @RequestBody CreateRouteDto cdto, @PathVariable UUID id){
-        Route r = routeService.findById(id);
-        r.setName(cdto.getName());
-        routeService.edit(r);
-        return cdto;
+    public GetRouteDto edit(@Valid @RequestBody CreateRouteDto cdto, @PathVariable UUID id){
+        return routeService.edit(cdto, id);
     }
 
     @DeleteMapping("/{id}")
@@ -62,41 +59,15 @@ public class RouteController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PostMapping("/{id}/poi")
-    public ResponseEntity<Route> addPOIToRoute(@PathVariable UUID id, @Valid @RequestBody CreatePOIDto createPOIDto){
-        Route r = routeService.findById(id);
-        POI p = poiDtoConverter.createPOIDtoToPOI(createPOIDto);
-        if(r.getSteps().contains(p)){
-            throw new EntityExistsException();
-        }else{
-            r.getSteps().add(p);
-
-            poiService.save(p);
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(routeService.save(r));
-        }
-    }
-
     @PostMapping("/{id}/poi/{id2}")
     public ResponseEntity<Route> addPOIToRoute(@PathVariable UUID id, @PathVariable UUID id2){
-        Route r = routeService.findById(id);
-        POI p = poiService.findById(id2);
-        if(r.getSteps().contains(p)){
-            throw new EntityExistsException();
-        }else{
-        r.getSteps().add(p);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(routeService.save(r));
-        }
+        return routeService.addPOIToRoute(id, id2);
     }
 
     @DeleteMapping("/{id}/poi/{id2}")
     public ResponseEntity<?> RemovePOIToRoute(@PathVariable UUID id, @PathVariable UUID id2){
-        Route r = routeService.findById(id);
-        POI p = poiService.findById(id2);
-        r.getSteps().remove(p);
-        routeService.save(r);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+        return routeService.RemovePOIToRoute(id, id2);
     }
 
 }

@@ -22,13 +22,10 @@ public class POIController {
 
     private final POIService poiService;
     private final POIDtoConverter poiDtoConverter;
-    private final CategoryService categoryService;
 
     @GetMapping("/")
     public List<GetPOIDto> findAll(){
-        return poiService.findAll().stream()
-                .map(poiDtoConverter::pOIToGeTPOIDto)
-                .collect(Collectors.toList());
+        return poiService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -38,22 +35,18 @@ public class POIController {
 
     @PostMapping("/")
     public ResponseEntity<POI> crear(@Valid @RequestBody CreatePOIDto c){
-
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(poiService.save(poiDtoConverter.createPOIDtoToPOI(c)));
     }
 
     @PutMapping("/{id}")
     public GetPOIDto edit(@Valid @RequestBody CreatePOIDto cdto, @PathVariable UUID id){
-        
         return poiService.edit(cdto, id);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id){
-        if(poiService.findById(id)!=null){
-            poiService.deleteById(id);
-        }
+        poiService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

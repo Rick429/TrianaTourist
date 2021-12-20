@@ -45,11 +45,8 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public CreateCategoryDto edit(@Valid @RequestBody CreateCategoryDto cdto, @PathVariable UUID id){
-        Category c = categoryService.findById(id);
-        c.setName(cdto.getName());
-        categoryService.edit(c);
-        return cdto;
+    public GetCategoryDto edit(@Valid @RequestBody CreateCategoryDto cdto, @PathVariable UUID id){
+        return categoryService.edit(cdto, id);
     }
 
     @DeleteMapping("/{id}")

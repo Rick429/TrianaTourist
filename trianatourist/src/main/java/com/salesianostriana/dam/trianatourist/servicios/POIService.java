@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,12 +25,14 @@ public class POIService {
     private final POIRepository poiRepository;
     private final POIDtoConverter poiDtoConverter;
 
-    public List<POI> findAll() {
+    public List<GetPOIDto> findAll() {
         List<POI> lista = poiRepository.findAll();
         if(lista.isEmpty()){
             throw new ListEntityNotFoundException(POI.class);
         }else{
-            return lista;
+            return lista.stream()
+                    .map(poiDtoConverter::pOIToGeTPOIDto)
+                    .collect(Collectors.toList());
         }
     }
 
@@ -50,10 +53,7 @@ public class POIService {
             p.get().setPhoto2(cdto.getPhoto2());
             p.get().setPhoto3(cdto.getPhoto3());
            return poiDtoConverter.pOIToGeTPOIDto(poiRepository.save(p.get()));
-
         }
-
-
     }
 
     public POI save (POI poi){
@@ -62,7 +62,11 @@ public class POIService {
     }
 
     public void deleteById (UUID id){
-        poiRepository.deleteById(id);
+        if(poiRepository.findById(id).isEmpty()){
+            throw new SingleEntityNotFoundException(id.toString(), POI.class);
+        }else{
+            poiRepository.deleteById(id);
+        }
     }
 
     public List<POI>findByCategoryId(UUID id){ return poiRepository.findByCategoryId(id);}

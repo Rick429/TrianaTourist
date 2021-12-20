@@ -231,7 +231,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Poinuevo\",\r\n    \"location\":\"37.3803587,-6.0097771\",\r\n    \"date\":\"2012-10-10\",\r\n    \"category\":\"categoria2\",\r\n    \"coverPhoto\":\"coverPhotoedit.jpg\",\r\n    \"photo2\":\"editphoto2.jpg\",\r\n    \"photo3\":\"editphoto3.jpg\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Poinuevo\",\r\n    \"location\":\"37.3803587,-6.0097771\",\r\n    \"date\":\"2012-10-10\",\r\n    \"category\":\"ac1b4618-7dd7-1680-817d-d7d7dfff0002\",\r\n    \"coverPhoto\":\"https://coverPhotoedit.jpg\",\r\n    \"photo2\":\"https://editphoto2.jpg\",\r\n    \"photo3\":\"https://editphoto3.jpg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,38 +409,7 @@
 					"response": []
 				},
 				{
-					"name": "6.-Añadir POI a ruta",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Poi1\",\r\n    \"location\":\"37.3803587,-6.0097771\",\r\n    \"date\":\"2012-10-10\",\r\n    \"coverPhoto\":\"coverPhoto.jpg\",\r\n    \"photo2\":\"photo2.jpg\",\r\n    \"photo3\":\"photo3.jpg\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/route/{{idRoute}}/poi/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"route",
-								"{{idRoute}}",
-								"poi",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "7.-Añadir POI existente a ruta",
+					"name": "6.-Añadir POI existente a ruta",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -462,7 +431,7 @@
 					"response": []
 				},
 				{
-					"name": "8.-Eliminar POI de una ruta",
+					"name": "7.-Eliminar POI de una ruta",
 					"request": {
 						"method": "DELETE",
 						"header": [],
